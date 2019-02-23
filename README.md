@@ -3,8 +3,6 @@ Example Next app Serverless Deployment
 
 ## Building next-app
 
-see [./next-app](./next-app)
-
 ```sh
 mkdir next-app
 cd next-app
@@ -24,9 +22,8 @@ add next scripts to [./next-app/package.json](./next-app/package.json)
 }
 ```
 
-create pages
+create pages and components
 
-```sh
-mkdir ./next-app/pages
-touch ./next-app/pages/index.js
-```
+see [./next-app](./next-app)
+
+use [`isomorphic-unfetch`](https://www.npmjs.com/package/isomorphic-unfetch) to fetch from server or client

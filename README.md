@@ -24,3 +24,9 @@ add next scripts to [./next-app/package.json](./next-app/package.json)
 }
 ```
 
+create pages
+
+```sh
+mkdir ./next-app/pages
+touch ./next-app/pages/index.js
+```

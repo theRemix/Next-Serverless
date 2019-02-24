@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "npm run monkey:patch:node-fetch && next build",
     "start": "next start",
+    "monkey:patch:node-fetch": "awk -i inplace '!x{x=sub(\"convert = .*\",\"convert = null;\")}1' node_modules/node-fetch/lib/index.js && echo 'monkey patched node-fetch'",
+    "postinstall": "npm rebuild --target=8.15.0 --target_platform=linux --target_arch=x64 --target_libc=glibc --update-binary",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,5 +22,8 @@
     "next": "^8.0.3",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
+  },
+  "dependencies": {
+    "aws-serverless-express": "^3.3.5"
   }
 }

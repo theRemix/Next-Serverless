@@ -1,0 +1,49 @@
+service: next-serverless-ui
+app: next-serverless
+tenant: theremix
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'dev'}
+  region: us-west-2
+  memorySize: 512
+  timeout: 15
+  environment:
+    NODE_ENV: production
+
+package:
+  exclude:
+    - components/**
+    - pages/**
+    - tests/**
+    - node_modules/.cache/**
+    - .cache
+    - package.json
+    - yarn.lock
+    - package-lock.json
+    - "**.test.js"
+    - "__snapshots__/"
+  include:
+    - handlers/
+    - .next/**
+
+functions:
+  index:
+    handler: handlers/index.handler
+    events:
+      - http:
+          path: /
+          method: GET
+  starships:
+    handler: handlers/starships.handler
+    events:
+      - http:
+          path: /starships
+          method: GET
+  _error:
+    handler: handlers/_error.handler
+    events:
+      - http:
+          path: /{any+}
+          method: GET

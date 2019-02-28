@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "npm run monkey:patch:node-fetch && next build",
     "start": "next start",
-    "monkey:patch:node-fetch": "awk -i inplace '!x{x=sub(\"convert = .*\",\"convert = null;\")}1' node_modules/node-fetch/lib/index.js && echo 'monkey patched node-fetch'",
+    "monkey:patch:node-fetch": "awk '!x{x=sub(\"convert = .*\",\"convert = null;\")}1' node_modules/node-fetch/lib/index.js > node_modules/node-fetch/lib/index.js.patched && mv node_modules/node-fetch/lib/index.js.patched node_modules/node-fetch/lib/index.js && echo 'monkey patched node-fetch'",
     "postinstall": "npm rebuild --target=8.15.0 --target_platform=linux --target_arch=x64 --target_libc=glibc --update-binary",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
